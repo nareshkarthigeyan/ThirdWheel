@@ -67,11 +67,13 @@ function PostThread({ userId }: { userId: String }) {
                         name="thread"
                         render={({ field }) => (
                             <FormItem className="flex flex-col gap-3 w-full">
-                                <FormLabel className="text-base-semibold text-light-2">
-                                    Content
-                                </FormLabel>
+                                {/* <FormLabel className="text-base-semibold text-light-2"></FormLabel> */}
                                 <FormControl className="no-focus border border-dark-4 bg-dark-3 text-light-1">
-                                    <Textarea rows={15} {...field} />
+                                    <Textarea
+                                        rows={15}
+                                        placeholder="Type something..."
+                                        {...field}
+                                    />
                                 </FormControl>
                             </FormItem>
                         )}

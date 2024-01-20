@@ -37,11 +37,9 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
     });
 
     const onSubmit = async (values: z.infer<typeof CommentValidation>) => {
-        // Access the value of the "thread" input field from the form state
-        const threadValue = form.getValues("thread");
         await addCommentToThread(
             threadId,
-            threadValue,
+            values.thread,
             JSON.parse(currentUserId),
             pathname
         );

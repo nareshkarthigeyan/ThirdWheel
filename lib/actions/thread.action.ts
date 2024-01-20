@@ -116,7 +116,7 @@ export async function addCommentToThread(
     path: string
 ) {
     connectToDB();
-    console.log("Commectedd to DB while posting comment!");
+    console.log("Connected to DB while posting comment!");
     try {
         //adding a comment
         const originalThread = await Thread.findById(threadId);

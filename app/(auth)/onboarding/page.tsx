@@ -6,7 +6,7 @@ async function Page() {
 
     const userInfo = {};
 
-    const userDate = {
+    const userData = {
         id: user?.id,
         objectId: userInfo?._id,
         username: userInfo?.username || user?.username,
@@ -27,7 +27,7 @@ async function Page() {
                     className="mt-9 bg-dark-2 p-10 mb-10
             "
                 >
-                    <AccountProfile user={userDate} btnTitle="Continue" />
+                    <AccountProfile user={userData} btnTitle="Continue" />
                 </section>
             </div>
         </>

@@ -23,6 +23,7 @@ interface Props {
             image: string;
         };
     }[];
+    username: string;
     isComment?: boolean;
 }
 
@@ -35,9 +36,9 @@ const ThreadCard = async ({
     community,
     createdAt,
     comments,
+    username,
     isComment,
 }: Props) => {
-    const username = await currentUser();
     return (
         <div className="flex w-full flex-col rounded-xl bg-dark-2 p-7">
             <div className="flex items-start justify-between">
@@ -64,7 +65,7 @@ const ThreadCard = async ({
                                 {author.name}
                             </span>
                             <span className="cursor-pointer text-base-semibold text-gray-500 mx-2">
-                                {`@${username?.username}`}
+                                {username != undefined ? `@${username}` : null}
                             </span>
                         </Link>
 
