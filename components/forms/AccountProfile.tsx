@@ -20,6 +20,8 @@ import { ChangeEvent, useState } from "react";
 import { Textarea } from "../ui/textarea";
 import { isBase64Image } from "@/lib/utils";
 import { useUploadThing } from "@/lib/uploadthing";
+import { usePathname, useRouter } from "next/navigation";
+import { updateUser } from "@/lib/actions/user.actions";
 
 interface Props {
     user: {
@@ -35,6 +37,8 @@ interface Props {
 const AccountProfile = ({ user, btnTitle }) => {
     const [files, setFiles] = useState<File[]>([]);
     const { startUpload } = useUploadThing("media");
+    const router = useRouter();
+    const pathname = usePathname();
 
     const form = useForm({
         resolver: zodResolver(UserValidation),
@@ -59,7 +63,20 @@ const AccountProfile = ({ user, btnTitle }) => {
             }
         }
 
-        //TODO: Update User Profile:
+        await updateUser({
+            userId: user.id,
+            name: values.name,
+            username: values.username,
+            bio: values.bio,
+            image: values.profile_photo,
+            path: pathname,
+        });
+
+        if (pathname === "/profile/edit") {
+            router.back();
+        } else {
+            router.push("/");
+        }
     };
 
     function handleImage(
@@ -74,7 +91,7 @@ const AccountProfile = ({ user, btnTitle }) => {
             const file = e.target.files[0];
             setFiles(Array.from(e.target.files));
 
-            if (!file.type.includes("mage")) return;
+            if (!file.type.includes("image")) return;
 
             fileReader.onload = async (event) => {
                 const imageDataUrl = event.target?.result?.toString() || "";
@@ -152,7 +169,7 @@ const AccountProfile = ({ user, btnTitle }) => {
                 />
                 <FormField
                     control={form.control}
-                    name="name"
+                    name="username"
                     render={({ field }) => (
                         <FormItem className="flex gap-3 flex-col w-full">
                             <FormLabel className="text-base-semibold text-light-2">
@@ -170,7 +187,7 @@ const AccountProfile = ({ user, btnTitle }) => {
                 />
                 <FormField
                     control={form.control}
-                    name="name"
+                    name="bio"
                     render={({ field }) => (
                         <FormItem className="flex flex-col gap-3 w-full">
                             <FormLabel className="text-base-semibold text-light-2">
@@ -187,7 +204,7 @@ const AccountProfile = ({ user, btnTitle }) => {
                     )}
                 />
 
-                <Button type="submit" className="bg-primary-500">
+                <Button type="submit" className="bg-gray-800">
                     Submit
                 </Button>
             </form>
