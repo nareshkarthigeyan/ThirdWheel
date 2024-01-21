@@ -53,17 +53,31 @@ async function Page({ params }: { params: { id: string } }) {
                             </TabsTrigger>
                         ))}
                     </TabsList>
+
                     {profileTabs.map((tab) => (
                         <TabsContent
                             key={`content-${tab.label}`}
                             value={tab.value}
                             className="w-full text-light-1"
                         >
-                            <ThreadsTab
-                                currentUserId={user.id}
-                                accountId={userInfo.id}
-                                accountType="User"
-                            />
+                            {userInfo.threads.length === 0 ? (
+                                <div className=" m-10 items-center flex flex-col text-center text-gray-500">
+                                    <div>*checks database*</div>
+                                    <div>It's Empty here. Post something.</div>
+                                    <div className="text-xxs max-w-96 m-1">
+                                        (And in case you did, it doesn't work
+                                        for some reason, I have been debugging
+                                        for hours and gave up. Well, it's a new
+                                        feature. Go touch some grass.)
+                                    </div>
+                                </div>
+                            ) : (
+                                <ThreadsTab
+                                    currentUserId={user.id}
+                                    accountId={userInfo.id}
+                                    accountType="User"
+                                />
+                            )}
                         </TabsContent>
                     ))}
                 </Tabs>

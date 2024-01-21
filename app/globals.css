@@ -114,6 +114,10 @@
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
         background: #7878a3;
     }
+
+    .text-xxs {
+        font-size: 12px;
+    }
 }
 
 /* Clerk Responsive fix */
