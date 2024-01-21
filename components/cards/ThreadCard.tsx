@@ -69,19 +69,23 @@ const ThreadCard = async ({
                             </span>
                         </Link>
 
-                        <p className="mt-2 text-small-regular text-light-2">
+                        <p className="mt-2  mb-3 text-small-regular text-light-2">
                             {content}
                         </p>
 
-                        <div className="mt-5 flex flex-col gap-3">
+                        <div
+                            className={`${
+                                isComment && `mb-10`
+                            }mt-5 flex flex-col gap-3`}
+                        >
                             <div className="flex gap-3.5">
-                                {/* <Image
+                                <Image
                                     src="/assets/heart-gray.svg"
                                     alt="heart"
                                     width={24}
                                     height={24}
                                     className="cursor-pointer object-contain"
-                                /> */}
+                                />
                                 <Link href={`/thread/${id}`}>
                                     <Image
                                         src="/assets/reply.svg"
@@ -91,7 +95,7 @@ const ThreadCard = async ({
                                         className="cursor-pointer object-contain"
                                     />
                                 </Link>
-                                {/* <Image
+                                <Image
                                     src="/assets/repost.svg"
                                     alt="heart"
                                     width={24}
@@ -104,9 +108,9 @@ const ThreadCard = async ({
                                     width={24}
                                     height={24}
                                     className="cursor-pointer object-contain"
-                                /> */}
+                                />
                             </div>
-                            {isComment && comments.length > 0 && (
+                            {isComment && comments && comments.length > 0 && (
                                 <Link href={`/thread/${id}`}>
                                     <p className="mt-1 text-subtle-medium text-gray-1">
                                         {comments.length} replies

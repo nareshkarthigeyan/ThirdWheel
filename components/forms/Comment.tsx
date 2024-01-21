@@ -1,6 +1,6 @@
 "use client";
 
-import { z } from "zod";
+import * as z from "zod";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { usePathname } from "next/navigation";
@@ -17,7 +17,7 @@ import {
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 
-import { CommentValidation } from "@/lib/validations/thread";
+import { CommentValidation, ThreadValidation } from "@/lib/validations/thread";
 import { addCommentToThread } from "@/lib/actions/thread.action";
 
 interface Props {
@@ -70,9 +70,9 @@ function Comment({ threadId, currentUserImg, currentUserId }: Props) {
                             <FormControl className="border-none bg-transparent">
                                 <Input
                                     type="text"
-                                    {...field}
                                     placeholder="Comment..."
                                     className="no-focus text-light-1 outline-none"
+                                    {...field}
                                 />
                             </FormControl>
                         </FormItem>

@@ -1,11 +1,15 @@
-import ThreadCard from "@/components/cards/ThreadCard";
-import Comment from "@/components/forms/Comment";
-import { fetchThreadById } from "@/lib/actions/thread.action";
-import { fetchUser } from "@/lib/actions/user.actions";
-import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
+import { currentUser } from "@clerk/nextjs";
 
-const Page = async ({ params }: { params: { id: string } }) => {
+import Comment from "@/components/forms/Comment";
+import ThreadCard from "@/components/cards/ThreadCard";
+
+import { fetchUser } from "@/lib/actions/user.actions";
+import { fetchThreadById } from "@/lib/actions/thread.action";
+
+export const revalidate = 0;
+
+async function page({ params }: { params: { id: string } }) {
     if (!params.id) return null;
 
     const user = await currentUser();
@@ -20,16 +24,15 @@ const Page = async ({ params }: { params: { id: string } }) => {
         <section className="relative">
             <div>
                 <ThreadCard
-                    key={thread._id}
                     id={thread._id}
-                    currentUserId={user?.id || ""}
+                    currentUserId={user.id}
                     parentId={thread.parentId}
                     content={thread.text}
                     author={thread.author}
                     community={thread.community}
                     createdAt={thread.createdAt}
                     comments={thread.children}
-                    username={thread.username}
+                    isComment
                 />
             </div>
 
@@ -42,6 +45,6 @@ const Page = async ({ params }: { params: { id: string } }) => {
             </div>
         </section>
     );
-};
+}
 
-export default Page;
+export default page;
