@@ -5,10 +5,8 @@ import { User, currentUser } from "@clerk/nextjs/server";
 
 export default async function Home() {
     const result = await fetchPosts(1, 30);
-    console.log(result.posts);
+    // console.log(result.posts);
     const user = await currentUser();
-
-    console.log(result);
 
     return (
         <>
