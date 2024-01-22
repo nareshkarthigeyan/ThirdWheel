@@ -118,6 +118,10 @@
     .text-xxs {
         font-size: 12px;
     }
+
+    .mv {
+        margin-top: 2px;
+    }
 }
 
 /* Clerk Responsive fix */

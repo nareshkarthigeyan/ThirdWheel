@@ -60,12 +60,27 @@ const ThreadCard = async ({
 
                     <div className="flex w-full flex-col">
                         <Link href={`/profile/${author.id}`}>
-                            <span className="cursor-pointer text-base-semibold text-light-2">
-                                {author.name}
-                            </span>
-                            <span className="cursor-pointer text-base-semibold text-gray-500 mx-2">
-                                {username != undefined ? `@${username}` : null}
-                            </span>
+                            <div className="flex">
+                                <span className="cursor-pointer text-base-semibold text-light-2">
+                                    {author.name}
+                                </span>
+
+                                <span className="cursor-pointer text-base-semibold text-gray-500 mx-2">
+                                    {`@${author.username}`}
+                                </span>
+
+                                <span className="mv">
+                                    {author.id ===
+                                        "user_2bBYATKpB664bkFIAHrhQyVyCyb" && (
+                                        <Image
+                                            src="/assets/verified.png"
+                                            alt="Verified"
+                                            height={20}
+                                            width={20}
+                                        />
+                                    )}
+                                </span>
+                            </div>
                         </Link>
 
                         <p className="mt-2  mb-3 text-small-regular text-light-2">
@@ -121,24 +136,30 @@ const ThreadCard = async ({
                 </div>
                 {/* TODO: Delete thread TODO: Show comment logos */}
             </div>
-            {!isComment && community && (
-                <Link
-                    href={`/communities/${community.id}`}
-                    className="mt-5 flex items-center"
-                >
-                    <p className="text-subtle-medium text-gray-1">
-                        {formatDateString(createdAt)} - {community.name}{" "}
-                        Community
+            <div className="items-right">
+                {!isComment && community ? (
+                    <Link
+                        href={`/communities/${community.id}`}
+                        className="mt-5 flex items-center"
+                    >
+                        <p className="text-subtle-medium text-gray-1">
+                            {formatDateString(createdAt)} - {community.name}{" "}
+                            Community
+                        </p>
+                        <Image
+                            src={community.image}
+                            alt={community.name}
+                            width={14}
+                            height={14}
+                            className="ml-1 rounded-full object-cover"
+                        />
+                    </Link>
+                ) : (
+                    <p className="mt-3 px-14 text-subtle-medium text-gray-600">
+                        {formatDateString(createdAt)}
                     </p>
-                    <Image
-                        src={community.image}
-                        alt={community.name}
-                        width={14}
-                        height={14}
-                        className="ml-1 rounded-full object-cover"
-                    />
-                </Link>
-            )}
+                )}
+            </div>
         </div>
     );
 };
