@@ -1,6 +1,6 @@
 "use server";
 
-import mongoose, { FilterQuery, SortOrder } from "mongoose";
+import { FilterQuery, SortOrder } from "mongoose";
 
 import Community from "../models/community.model";
 import Thread from "../models/thread.model";
@@ -72,10 +72,6 @@ export async function fetchCommunityDetails(id: string) {
 
 export async function fetchCommunityPosts(id: string) {
     try {
-        if (!mongoose.Types.ObjectId.isValid(id)) {
-            throw new Error("Invalid ObjectId");
-        }
-
         connectToDB();
 
         const communityPosts = await Community.findById(id).populate({
