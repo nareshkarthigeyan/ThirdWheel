@@ -219,13 +219,6 @@ export async function addCommentToThread(
     connectToDB();
 
     try {
-        // Find the original thread by its ID
-        const originalThread = await Thread.findById(threadId);
-
-        if (!originalThread) {
-            throw new Error("Thread not found");
-        }
-
         // Create the new comment thread
         const commentThread = new Thread({
             text: commentText,
@@ -236,15 +229,37 @@ export async function addCommentToThread(
         // Save the comment thread to the database
         const savedCommentThread = await commentThread.save();
 
+        if (!savedCommentThread) {
+            console.error("Error saving comment thread to the database");
+            throw new Error("Unable to add comment. Please try again later.");
+        }
+
+        // Find the original thread by its ID
+        const originalThread = await Thread.findById(threadId);
+
+        if (!originalThread) {
+            console.error("Thread not found");
+            throw new Error(
+                "Unable to add comment. Original thread not found."
+            );
+        }
+
         // Add the comment thread's ID to the original thread's children array
         originalThread.children.push(savedCommentThread._id);
 
         // Save the updated original thread to the database
-        await originalThread.save();
+        const updatedOriginalThread = await originalThread.save();
+
+        if (!updatedOriginalThread) {
+            console.error("Error updating the original thread");
+            throw new Error(
+                "Unable to add comment. Error updating the original thread."
+            );
+        }
 
         revalidatePath(path);
-    } catch (err) {
+    } catch (err: any) {
         console.error("Error while adding comment:", err);
-        throw new Error("Unable to add comment");
+        throw new Error("Unable to add comment. Please try again later. ", err);
     }
 }

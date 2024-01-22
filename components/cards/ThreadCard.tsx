@@ -40,6 +40,15 @@ const ThreadCard = async ({
     username,
     isComment,
 }: Props) => {
+    const moment = require("moment-timezone");
+
+    const createdAtTime = createdAt; // Replace with your actual date string
+    const formattedDate = moment(createdAtTime)
+        .tz("Asia/Kolkata")
+        .format("YYYY-MM-DD HH:mm:ss");
+
+    console.log(formattedDate);
+
     return (
         <div className="flex w-full flex-col rounded-xl bg-dark-2 p-7">
             <div className="flex items-start justify-between">
@@ -143,7 +152,7 @@ const ThreadCard = async ({
                         className="mt-5 flex items-center"
                     >
                         <p className="text-subtle-medium text-gray-1">
-                            {formatDateString(createdAt)} - {community.name}{" "}
+                            {formatDateString(formattedDate)} - {community.name}{" "}
                             Community
                         </p>
                         <Image
@@ -156,7 +165,7 @@ const ThreadCard = async ({
                     </Link>
                 ) : (
                     <p className="mt-3 px-14 text-subtle-medium text-gray-600">
-                        {formatDateString(createdAt)}
+                        {formatDateString(formattedDate)}
                     </p>
                 )}
             </div>
