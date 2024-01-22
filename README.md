@@ -1,34 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# About ThirdWheel
 
-## Getting Started
+ThirdWheel is a small scale Social Media web application mimicking the likes of X, Threads, etc.
 
-First, run the development server:
+## Technologies used
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+-   ReactJS
+-   NextJS 13.4.12
+-   Clerk (Authentication)
+-   MongoDB (Database Management)
+-   Uploadthing
+-   Zod (Type-Schema Validation)
+-   Tailwind CSS (styling)
+-   ShadCN UI (UI components like forms)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Features:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Authentication
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This app uses clerk (https://clerk.com) for it's authentication and User management. Users can login directly through 3rd Party accounts like Google, Github, etc.
 
-## Learn More
+## Posting Wheels (or Threads/Tweets)
 
-To learn more about Next.js, take a look at the following resources:
+As of now, there is no feature to Like, Comment, Share, or Repost a Post.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Post UI:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+-   Post UI has the mention of User Info like:
+    -   Profile Picture
+    -   Name of the user
+    -   Username
+    -   Verification
+    -   Time the post was made (in Indian Standard Time)
 
-## Deploy on Vercel
+## Profile and Homepage
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+-   The users have their own profile, containing usual social media profile info like username, name and bio.
+-   The profile also has a tab which displays all the posts they have made in order. Easy to access user-specific posts that dissapear in the main page.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Search Tab
+
+-   It displays the list of users (except oneself) and gives an option to view them.
+
+## Community (buggy and under development)
+
+-   Peope can create communities through their clerk interface, and is integrated into the website using webhooks. Community uses the free version of Clerk's organization feature, hence, only three users are allowed in the community.
+-   Community admin can create, delete communities and add, remove users. Users are invited through their mail ID's.
+-   Communities have community-specific posts that can be accessed only through the members.
+
+`NOTE: Community Profile as of now does not function as intended and can break the website.`
