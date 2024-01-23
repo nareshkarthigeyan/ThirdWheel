@@ -19,6 +19,7 @@ import { useOrganization } from "@clerk/nextjs";
 
 import { ThreadValidation } from "@/lib/validations/thread";
 import { createThread } from "@/lib/actions/thread.action";
+import { useState } from "react";
 // import { updateUser } from "@/lib/actions/user.actions";
 
 interface Props {
@@ -38,6 +39,8 @@ function PostThread({ userId }: { userId: String }) {
     const pathname = usePathname();
     const { organization } = useOrganization();
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     const form = useForm({
         resolver: zodResolver(ThreadValidation),
         defaultValues: {
@@ -47,14 +50,23 @@ function PostThread({ userId }: { userId: String }) {
     });
 
     const onSubmit = async (values: z.infer<typeof ThreadValidation>) => {
-        await createThread({
-            text: values.thread,
-            author: userId,
-            communityId: organization ? organization.id : null,
-            path: pathname,
-        });
+        setIsSubmitting(true);
+        try {
+            await createThread({
+                text: values.thread,
+                author: userId,
+                communityId: organization ? organization.id : null,
+                path: pathname,
+            });
 
-        router.push("/");
+            router.push("/");
+        } catch (error) {
+            console.log("Error submitting post: ", error);
+        } finally {
+            setTimeout(() => {
+                setIsSubmitting(false);
+            }, 2000);
+        }
     };
 
     return (
@@ -81,8 +93,12 @@ function PostThread({ userId }: { userId: String }) {
                         )}
                     />
 
-                    <Button type="submit" className="bg-gray-800">
-                        Post
+                    <Button
+                        type="submit"
+                        className="bg-gray-800"
+                        disabled={isSubmitting}
+                    >
+                        {isSubmitting ? "Posting" : "Post"}
                     </Button>
                 </form>
             </Form>

@@ -47,7 +47,7 @@ const ThreadCard = async ({
         .tz("Asia/Kolkata")
         .format("YYYY-MM-DD HH:mm:ss");
 
-    console.log(formattedDate);
+    // console.log(formattedDate);
 
     return (
         <div className="flex w-full flex-col rounded-xl bg-dark-2 p-7">

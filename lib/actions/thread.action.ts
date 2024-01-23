@@ -243,9 +243,9 @@ export async function addCommentToThread(
                 "Unable to add comment. Original thread not found."
             );
         }
-
+        console.log(savedCommentThread._id._id);
         // Add the comment thread's ID to the original thread's children array
-        originalThread.children.push(savedCommentThread._id);
+        originalThread.children.push(savedCommentThread._id._id);
 
         // Save the updated original thread to the database
         const updatedOriginalThread = await originalThread.save();
@@ -259,6 +259,7 @@ export async function addCommentToThread(
 
         revalidatePath(path);
     } catch (err: any) {
+        console.log(err);
         console.error("Error while adding comment:", err);
         throw new Error("Unable to add comment. Please try again later. ", err);
     }
