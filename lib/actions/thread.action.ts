@@ -175,7 +175,7 @@ export async function fetchThreadById(threadId: string) {
             .populate({
                 path: "author",
                 model: User,
-                select: "_id id name image",
+                select: "_id id username name image",
             }) // Populate the author field with _id and username
             .populate({
                 path: "community",
