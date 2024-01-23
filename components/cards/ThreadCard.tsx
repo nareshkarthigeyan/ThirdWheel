@@ -48,6 +48,7 @@ const ThreadCard = async ({
         .tz("Asia/Kolkata")
         .format("YYYY-MM-DD HH:mm:ss");
 
+    const verifiedaccount = ["user_2bBYATKpB664bkFIAHrhQyVyCyb","user_2bKzbqNKbaEVWUDj4GM1HqXM1H4"]
     // console.log(formattedDate);
 
     return (
@@ -80,8 +81,7 @@ const ThreadCard = async ({
                                 </span>
 
                                 <span className="mv">
-                                    {author.id ===
-                                        "user_2bBYATKpB664bkFIAHrhQyVyCyb" && (
+                                    {verifiedaccount.includes(author.id) && (
                                         <Image
                                             src="/assets/verified.png"
                                             alt="Verified"
