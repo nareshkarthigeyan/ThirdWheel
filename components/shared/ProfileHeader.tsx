@@ -34,17 +34,11 @@ const ProfileHeader = ({
                         />
                     </div>
                     <div className="flex-1">
-                        <h2 className="text-left text-heading3-bold text-light-1">
-                            {name}
-                        </h2>
-                        <p className="text-base-medium text-gray-1">
-                            @{username}
-                        </p>
-                        <div className="flex">
-                            <p className="mt-3 max-w-lg text-base-regular text-light-2">
-                                {bio}
-                            </p>
-                            <p className="mt-3 mx-3 max-w-lg text-base-regular text-light-2">
+                        <div className="flex items-stretch">
+                            <h2 className="text-left text-heading3-bold text-light-1">
+                                {name}
+                            </h2>
+                            <p className="mt-1.5 mx-3 max-w-lg text-base-regular text-light-2">
                                 {profileId === accountId && (
                                     <a
                                         href="/onboarding"
@@ -53,6 +47,14 @@ const ProfileHeader = ({
                                         Edit Profile
                                     </a>
                                 )}
+                            </p>
+                        </div>
+                        <p className="text-base-medium text-gray-1">
+                            @{username}
+                        </p>
+                        <div className="flex">
+                            <p className="mt-3 max-w-lg text-base-regular text-light-2">
+                                {bio}
                             </p>
                         </div>
                     </div>

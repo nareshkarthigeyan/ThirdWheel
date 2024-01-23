@@ -63,18 +63,20 @@ async function Topbar() {
 
                 <div>
                     {user ? (
-                        <Link
-                            href={`/profile/${userInfo.id}`}
-                            className="flex items-center gap-4"
-                        >
-                            <Image
-                                src={userInfo.image}
-                                alt="Profile Image"
-                                height={40}
-                                width={40}
-                                className="cursor-pointer rounded-full"
-                            />
-                        </Link>
+                        <div className="px-2">
+                            <Link
+                                href={`/profile/${userInfo.id}`}
+                                className="flex items-center gap-4"
+                            >
+                                <Image
+                                    src={userInfo.image}
+                                    alt="Profile Image"
+                                    height={40}
+                                    width={40}
+                                    className="cursor-pointer rounded-full"
+                                />
+                            </Link>
+                        </div>
                     ) : (
                         element
                     )}
