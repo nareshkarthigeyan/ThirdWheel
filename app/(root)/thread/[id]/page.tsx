@@ -50,6 +50,7 @@ async function page({ params }: { params: { id: string } }) {
                     thread.children.length > 0 &&
                     thread.children.map((childItem: any) => (
                         <ThreadCard
+                            username=""
                             key={childItem._id}
                             id={childItem._id}
                             currentUserId={user.id}

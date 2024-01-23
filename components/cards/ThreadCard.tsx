@@ -12,6 +12,7 @@ interface Props {
         name: string;
         image: string;
         id: string;
+        username: string;
     };
     community: {
         id: string;
