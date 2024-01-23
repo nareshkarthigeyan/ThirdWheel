@@ -3,6 +3,8 @@ import { redirect } from "next/navigation";
 import ThreadCard from "../cards/ThreadCard";
 import { any } from "zod";
 import { fetchCommunityPosts } from "@/lib/actions/community.actions";
+import { ThreadSkeletons } from "../cards/Skeletons";
+import { Suspense } from "react";
 
 interface Props {
     currentUserId: string;
@@ -22,12 +24,21 @@ const ThreadsTab = async ({ currentUserId, accountId, accountType }: Props) => {
 
     if (!result) redirect("/");
 
+    const skeletonLength = 4;
+    const skeletonArray = Array.from({ length: skeletonLength });
+
+
     return (
+
         <section className="mt-9 flex flex-col gap-10">
+            <Suspense fallback={skeletonArray.map(() => (
+                <ThreadSkeletons />
+            ))}>             
             {result.threads.map((thread: any) => (
                 <ThreadCard
                     key={thread._id}
                     id={thread._id}
+                    username={thread.username}
                     currentUserId={currentUserId}
                     parentId={thread.parentId}
                     content={thread.text}
@@ -51,6 +62,7 @@ const ThreadsTab = async ({ currentUserId, accountId, accountType }: Props) => {
                     comments={thread.children}
                 />
             ))}
+            </Suspense>
         </section>
     );
 };
