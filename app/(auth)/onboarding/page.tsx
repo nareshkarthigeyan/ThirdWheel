@@ -19,19 +19,22 @@ async function Page() {
         image: userInfo ? userInfo?.image : user?.imageUrl,
     };
     return (
-        <>
-            <div className="flex flex-col items-center">
-                <main className="mx-auto flex max-w-3xl flex-col justify-center px-7 py-20">
-                    <h1 className="head-text text-light-2">
-                        Welcome to ThirdWheel
-                    </h1>
-                    <p className="text-base-regular text-light-2">
-                        Complete your profile now to use ThirdWheel
-                    </p>
-                    <p className="text-xxs text-light-1">
-                        NOTE: Image should be under 1 MB
-                    </p>
-                </main>
+        <div>
+            <div className="flex flex-col">
+                {/* {userInfo.onboarded && (
+                    <main className="mx-auto flex max-w-3xl flex-col justify-center px-7 py-20">
+                        <h1 className="head-text text-light-2">
+                            Welcome to ThirdWheel
+                        </h1>
+                        <p className="text-base-regular text-light-2">
+                            Complete your profile now to use ThirdWheel
+                        </p>
+                        <p className="text-xxs text-light-1">
+                            NOTE: Image should be under 1 MB
+                        </p>
+                    </main>
+                )} */}
+
                 <section
                     className=" bg-dark-2 p-10 mb-10
             "
@@ -39,7 +42,7 @@ async function Page() {
                     <AccountProfile user={userData} btnTitle="Continue" />
                 </section>
             </div>
-        </>
+        </div>
     );
 }
 
