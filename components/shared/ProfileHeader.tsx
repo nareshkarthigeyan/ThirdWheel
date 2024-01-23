@@ -41,7 +41,7 @@ const ProfileHeader = ({
                             <p className="mt-1.5 mx-3 max-w-lg text-base-regular text-light-2">
                                 {profileId === accountId && (
                                     <a
-                                        href="/onboarding"
+                                        href="/edit-profile"
                                         className="text-gray-400"
                                     >
                                         Edit Profile

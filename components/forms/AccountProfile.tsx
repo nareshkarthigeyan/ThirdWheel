@@ -104,7 +104,7 @@ const AccountProfile = ({ user, btnTitle }) => {
     }
 
     return (
-        <div className="my-20">
+        <div className="my-10">
             <Form {...form}>
                 <form
                     onSubmit={form.handleSubmit(onSubmit)}

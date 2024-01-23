@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { number } from "zod";
 
 const threadSchema = new mongoose.Schema({
     text: { type: String, reuired: true },
