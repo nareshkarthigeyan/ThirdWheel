@@ -24,44 +24,44 @@ const ThreadsTab = async ({ currentUserId, accountId, accountType }: Props) => {
 
     if (!result) redirect("/");
 
-    const skeletonLength = 4;
+    const skeletonLength = 5;
     const skeletonArray = Array.from({ length: skeletonLength });
 
-
     return (
-
         <section className="mt-9 flex flex-col gap-10">
-            <Suspense fallback={skeletonArray.map(() => (
-                <ThreadSkeletons />
-            ))}>             
-            {result.threads.map((thread: any) => (
-                <ThreadCard
-                    key={thread._id}
-                    id={thread._id}
-                    username={thread.username}
-                    currentUserId={currentUserId}
-                    parentId={thread.parentId}
-                    content={thread.text}
-                    author={
-                        accountType === "User"
-                            ? {
-                                  name: result.name,
-                                  username: result.username,
-                                  image: result.image,
-                                  id: result.id,
-                              }
-                            : {
-                                  name: thread.author.name,
-                                  username: thread.author.username,
-                                  image: thread.author.image,
-                                  id: thread.author.id,
-                              }
-                    } //todo
-                    community={thread.community} //todo
-                    createdAt={thread.createdAt}
-                    comments={thread.children}
-                />
-            ))}
+            <Suspense
+                fallback={skeletonArray.map(() => (
+                    <ThreadSkeletons />
+                ))}
+            >
+                {result.threads.map((thread: any) => (
+                    <ThreadCard
+                        key={thread._id}
+                        id={thread._id}
+                        username={thread.username}
+                        currentUserId={currentUserId}
+                        parentId={thread.parentId}
+                        content={thread.text}
+                        author={
+                            accountType === "User"
+                                ? {
+                                      name: result.name,
+                                      username: result.username,
+                                      image: result.image,
+                                      id: result.id,
+                                  }
+                                : {
+                                      name: thread.author.name,
+                                      username: thread.author.username,
+                                      image: thread.author.image,
+                                      id: thread.author.id,
+                                  }
+                        } //todo
+                        community={thread.community} //todo
+                        createdAt={thread.createdAt}
+                        comments={thread.children}
+                    />
+                ))}
             </Suspense>
         </section>
     );

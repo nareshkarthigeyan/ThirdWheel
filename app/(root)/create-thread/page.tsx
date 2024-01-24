@@ -1,3 +1,4 @@
+import { CreatePostSkeleton } from "@/components/cards/Skeletons";
 import PostThread from "@/components/forms/PostThread";
 import { fetchUser } from "@/lib/actions/user.actions";
 import { currentUser } from "@clerk/nextjs";
@@ -14,7 +15,6 @@ async function Page() {
     return (
         <>
             <h1 className="head-text">Create a New Post</h1>
-
             <PostThread userId={userInfo._id} />
         </>
     );

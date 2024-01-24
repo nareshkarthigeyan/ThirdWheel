@@ -1,3 +1,5 @@
+import Image from "next/image";
+import { Button } from "../ui/button";
 import { Skeleton } from "../ui/skeleton";
 
 export function ThreadSkeletons() {
@@ -39,5 +41,28 @@ export function ThreadSkeletons() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export function SearchSkeletons() {
+    return (
+        <>
+            <div className="mt-9">
+                <article className="user-card">
+                    <div className="user-card_avatar">
+                        <Skeleton className="h-12 w-12 rounded-full" />
+                        <div className="flex-1 text-ellipsis space-y-2">
+                            <Skeleton className="h-4 w-[150px]" />
+                            <Skeleton className="h-3 bg-gray-500 w-[160px]" />
+                        </div>
+                    </div>
+
+                    <div>
+                        <Skeleton className="h-8 w-18 " />
+                        <Skeleton className="min-w-[74px] rounded-lg text-[12px] text-light-1 !important" />
+                    </div>
+                </article>
+            </div>
+        </>
     );
 }

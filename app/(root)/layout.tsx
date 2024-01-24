@@ -12,8 +12,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
     title: "ThirdWheel",
     description: "The Social Media",
-    viewport:
-        "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
+    viewport: "width=device-width, initial-scale=1.0, maximum-scale=1.0",
 };
 
 export default function RootLayout({
@@ -31,7 +30,7 @@ export default function RootLayout({
                         <LeftSidebar />
 
                         <section className="main-container">
-                            <div className="w-full max-w-4xl">{children}</div>
+                            <div className="w-full max-w-3xl">{children}</div>
                         </section>
 
                         {/* <RightSidebar /> */}

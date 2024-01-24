@@ -5,6 +5,7 @@ import { UserButton } from "@clerk/nextjs";
 import { User, currentUser } from "@clerk/nextjs/server";
 import { Suspense } from "react";
 import { array } from "zod";
+import { metadata } from "./layout";
 
 export default async function Home() {
     let loading = true;
@@ -12,7 +13,6 @@ export default async function Home() {
     loading = false;
     // console.log(result.posts);
     const user = await currentUser();
-
     const skeletonLength = 4;
     const skeletonArray = Array.from({ length: skeletonLength });
 
