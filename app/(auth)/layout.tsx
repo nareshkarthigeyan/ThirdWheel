@@ -6,8 +6,7 @@ import "../globals.css";
 export const metadata = {
     title: "ThirdWheel",
     description: "The Social Media",
-    viewport:
-        "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
+    viewport: "width=device-width, initial-scale=1.0, maximum-scale=1.0",
 };
 
 const inter = Inter({ subsets: ["latin"] });
