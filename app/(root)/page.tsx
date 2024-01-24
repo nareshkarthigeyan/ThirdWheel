@@ -8,7 +8,7 @@ import { array } from "zod";
 
 export default async function Home() {
     let loading = true;
-    const result = await fetchPosts(1, 30);
+    const result = await fetchPosts(1, 50);
     loading = false;
     // console.log(result.posts);
     const user = await currentUser();
