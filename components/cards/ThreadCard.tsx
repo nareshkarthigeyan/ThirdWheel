@@ -48,7 +48,10 @@ const ThreadCard = async ({
         .tz("Asia/Kolkata")
         .format("YYYY-MM-DD HH:mm:ss");
 
-    const verifiedaccount = ["user_2bBYATKpB664bkFIAHrhQyVyCyb","user_2bKzbqNKbaEVWUDj4GM1HqXM1H4"]
+    const verifiedaccount = [
+        "user_2bBYATKpB664bkFIAHrhQyVyCyb",
+        "user_2bKzbqNKbaEVWUDj4GM1HqXM1H4",
+    ];
     // console.log(formattedDate);
 
     return (
@@ -70,28 +73,38 @@ const ThreadCard = async ({
                     </div>
 
                     <div className="flex w-full flex-col">
-                        <Link href={`/profile/${author.id}`}>
-                            <div className="flex">
-                                <span className="cursor-pointer text-base-semibold text-light-2">
-                                    {author.name}
-                                </span>
+                        <div className="flex">
+                            <Link href={`/profile/${author.id}`}>
+                                <div>
+                                    <span className="cursor-pointer text-base-semibold text-light-2">
+                                        {author.name}
+                                    </span>
 
-                                <span className="cursor-pointer text-base-semibold text-gray-500 mx-2">
-                                    {`@${author.username}`}
-                                </span>
-
-                                <span className="mv">
-                                    {verifiedaccount.includes(author.id) && (
-                                        <Image
-                                            src="/assets/verified.png"
-                                            alt="Verified"
-                                            height={20}
-                                            width={20}
-                                        />
-                                    )}
-                                </span>
+                                    <span className="cursor-pointer text-base-semibold text-gray-500 mx-2">
+                                        {`@${author.username}`}
+                                    </span>
+                                </div>
+                            </Link>
+                            <div>
+                                <Link
+                                    href={`https://github.com/nareshkarthigeyan`}
+                                    target="_blank"
+                                >
+                                    <span className="mv">
+                                        {verifiedaccount.includes(
+                                            author.id
+                                        ) && (
+                                            <Image
+                                                src="/assets/verified.png"
+                                                alt="Verified"
+                                                height={20}
+                                                width={20}
+                                            />
+                                        )}
+                                    </span>
+                                </Link>
                             </div>
-                        </Link>
+                        </div>
 
                         <p className="mt-2  mb-3 text-small-regular text-light-2">
                             {content}

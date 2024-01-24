@@ -12,6 +12,8 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
     title: "ThirdWheel",
     description: "A Next.js 13 Application project",
+    name = "viewport",
+    content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no",
 };
 
 export default function RootLayout({
