@@ -40,11 +40,3 @@ As of now, there is no feature to Like, Comment, Share, or Repost a Post.
 ## Search Tab
 
 -   It displays the list of users (except oneself) and gives an option to view them.
-
-## Community (buggy and under development)
-
--   Peope can create communities through their clerk interface, and is integrated into the website using webhooks. Community uses the free version of Clerk's organization feature, hence, only three users are allowed in the community.
--   Community admin can create, delete communities and add, remove users. Users are invited through their mail ID's.
--   Communities have community-specific posts that can be accessed only through the members.
-
-`NOTE: Community Profile as of now does not function as intended and can break the website.`
